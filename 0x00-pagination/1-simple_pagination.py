@@ -8,7 +8,6 @@ import math
 from typing import List
 
 
-
 def index_range(page, page_size):
     """
     The function should return a tuple
@@ -19,17 +18,17 @@ def index_range(page, page_size):
     range_tuple = (start, end)
     return range_tuple
 
+
 class Server:
-    """Server class to paginate a database of popular baby names.
-    """
+    """Server class to paginate a database of popular baby names."""
+
     DATA_FILE = "Popular_Baby_Names.csv"
 
     def __init__(self):
         self.__dataset = None
 
     def dataset(self) -> List[List]:
-        """Cached dataset
-        """
+        """Cached dataset"""
         if self.__dataset is None:
             with open(self.DATA_FILE) as f:
                 reader = csv.reader(f)
@@ -39,15 +38,14 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            """
-            Method that returns desire page
-            """
-            assert isinstance(page_size, int) and page_size > 0
-            assert isinstance(page, int) and page > 0
-            datasetlen = len(self.dataset())
-            start, end = index_range(page, page_size)
-            if start >= datasetlen:
-                return []
-            
-            return self.dataset()[start:end]
+        """
+        Method that returns desire page
+        """
+        assert isinstance(page_size, int) and page_size > 0
+        assert isinstance(page, int) and page > 0
+        datasetlen = len(self.dataset())
+        start, end = index_range(page, page_size)
+        if start >= datasetlen:
+            return []
 
+        return self.dataset()[start:end]
