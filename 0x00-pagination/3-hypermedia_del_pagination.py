@@ -40,14 +40,14 @@ class Server:
         Get hyper
         """
         data = []
-        current_index = index
+        current = index
         indexed_keys = list(self.__indexed_dataset.keys())
-        while len(data) < page_size and current_index < len(indexed_keys):
-            if current_index in self.__indexed_dataset:
-                data.append(self.__indexed_dataset[current_index])
-            current_index += 1
+        while len(data) < page_size and current < len(indexed_keys):
+            if current in self.__indexed_dataset:
+                data.append(self.__indexed_dataset[current])
+            current += 1
 
-        next_index = current_index if current_index < len(indexed_keys) else None
+        next_index = current if current_index < len(indexed_keys) else None
         return {
             "index": index,
             "next_index": next_index,
