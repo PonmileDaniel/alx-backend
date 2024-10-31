@@ -57,8 +57,8 @@ class Server:
         assert isinstance(page_size, int) and page_size > 0
         assert isinstance(page, int) and page > 0
         retrieved = self.get_page(page, page_size)
-        total_pages = len(retrieved) / page_size
-        total_pages = math.ceil(total_pages)
+        dataset_length = len(self.dataset())
+        total_pages = math.ceil(dataset_length / page_size)
 
         hyper_data = {
             "page_size": len(retrieved),
