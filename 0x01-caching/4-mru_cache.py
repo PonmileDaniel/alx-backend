@@ -23,7 +23,7 @@ class MRUCache(BaseCaching):
             if key in self.cache_data:
                 self.access_order.remove(key)
             elif len(self.cache_data) >= self.MAX_ITEMS:
-                mru_key = self.access_order.pop(0)
+                mru_key = self.access_order.pop()
                 del self.cache_data[mru_key]
                 print(f"DISCARD: {mru_key}")
 
