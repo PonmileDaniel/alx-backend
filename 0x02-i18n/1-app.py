@@ -6,8 +6,8 @@ from flask_babel import Babel
 
 
 class Config:
-    '''Config class '''
-
+    """Config class
+    """
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
@@ -20,7 +20,7 @@ app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
-@app.route("/")
+@app.route("/", strict_slashes=False)
 def index() -> str:
     """Default routes"""
     return render_template("1-index.html")
