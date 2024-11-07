@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Get locale form request"""
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
@@ -20,16 +20,16 @@ app.url_map.strict_slashes = False
 babel = Babel(app)
 
 
-@app.route("/", strict_slashes=False)
-def index() -> str:
-    """Default routes"""
-    return render_template("2-index.html")
-
-
-@babel.localselector
+@babel.localeselector
 def get_locale():
+    """Get the best match"""
     return request.accept_language.best_match(app.config["LANGUAGES"])
 
+
+@app.route("/", strict_slashes=False)
+def index() -> str:
+    """Default route"""
+    return render_template("2-index.html")
 
 if __name__ == "__main__":
     app.run()
