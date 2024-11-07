@@ -23,13 +23,14 @@ babel = Babel(app)
 @babel.localeselector
 def get_locale() -> str: 
     """Get the best match"""
-    return request.accept_language.best_match(app.config["LANGUAGES"])
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 @app.route("/", strict_slashes=False)
 def index() -> str:
     """Default route"""
     return render_template("2-index.html")
+
 
 if __name__ == "__main__":
     app.run()
