@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python3
 """Get locale from request"""
 
 from flask import Flask, render_template
