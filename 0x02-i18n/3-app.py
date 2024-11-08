@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Get locale form request"""
+"""
+Get locale form request
+"""
 
 from flask import Flask, render_template, request
 from flask_babel import Babel, _
 
 
 class Config(object):
-    """Config Class"""
+    """ Config Class
+    """
 
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -22,7 +25,8 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale() -> str:
-    """Get the best match"""
+    """ Get the best match
+    """
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
