@@ -4,35 +4,43 @@ Get locale form request
 """
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 
-# Instantiate the app
+class Config(object):
+    """Config Class"""
+
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
+
+
 app = Flask(__name__)
-
-
-# wrap the app with babel
+app.config.from_object(Config)
+app.url_map.strict_slashes = False
 babel = Babel(app)
-
-
-app.config['BABEL_DEFAULT_LOCALE'] = 'en'
-app.config['BABEL_SUPPORTED_LOCALES'] = ['en', 'fr']
-
 
 
 @babel.localeselector
 def get_locale() -> str:
-    """ Check locale parameter """
-    locale = request.args.get('locale')
-    if locale in app.config['BABEL_SUPPORTED_LOCALES']:
+    """Get the locale for the web page.
+
+    Returns:
+        str: The best match
+    """
+    locale = request.args.get("locale")
+    if locale in app.config["LANGUAGES"]:
         return locale
-    """ Get the best match """
-    return request.accept_languages.best_match(app.config["BABEL_SUPPORTED_LOCALES"])
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 @app.route("/", strict_slashes=False)
 def index() -> str:
-    """ Default route """
+    """Get the locale for the web page.
+
+    Returns:
+        html: homepage
+    """
     return render_template("4-index.html")
 
 
