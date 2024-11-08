@@ -4,7 +4,7 @@ Get locale form request
 """
 
 from flask import Flask, render_template, request
-from flask_babel import Babel, _
+from flask_babel import Babel
 
 
 class Config(object):
@@ -23,7 +23,7 @@ babel = Babel(app)
 
 @babel.localeselector
 def get_locale() -> str:
-    """Get the locale for the web page.
+    """Accept language best match.
 
     Returns:
         str: The best match
@@ -36,7 +36,7 @@ def index() -> str:
     """Get the locale for the web page.
 
     Returns:
-        str: The best match
+        html: homepage
     """
     return render_template("3-index.html")
 
