@@ -40,7 +40,9 @@ def get_user():
 
 @app.before_request
 def before_request() -> None:
-    """Stores this data in g.user
+    """_summary_
+    Returns:
+        user is equal to get user
     """
 
     users = get_user()
