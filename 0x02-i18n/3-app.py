@@ -26,17 +26,17 @@ def get_locale() -> str:
     """Get the locale for the web page.
 
     Returns:
-        str: The best matc
+        str: The best match
     """
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 @app.route("/", strict_slashes=False)
 def index() -> str:
-    """Default route for the html page
-     
+    """Get the locale for the web page.
+
     Returns:
-        str: home page
+        str: The best match
     """
     return render_template("3-index.html")
 
