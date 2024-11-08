@@ -39,7 +39,7 @@ def get_user() -> Union[Dict, None]:
 
 
 @app.before_request
-def before_request() -> None:
+def before_request():
     """Stores this data in g.user
     """
     g.user = get_user()
