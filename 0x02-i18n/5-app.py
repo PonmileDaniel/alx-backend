@@ -3,7 +3,6 @@
 Get locale form request
 """
 
-from typing import Dict, Union
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
 
@@ -60,6 +59,7 @@ def get_locale() -> str:
     locale = request.args.get("locale")
     if locale in app.config["LANGUAGES"]:
         return locale
+
     return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
