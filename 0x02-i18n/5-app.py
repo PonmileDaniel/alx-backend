@@ -35,11 +35,17 @@ def get_user() -> Union[Dict, None]:
     login_id = request.args.get('login_as')
     if login_id:
         return users.get(int(login_id))
+    return None
 
 
+@app.before_request
 def before_request() -> None:
-    """Stores this data in g.user"""
+    """Stores this data in g.user
+    """
+
     g.user = get_user()
+
+
 @babel.localeselector
 def get_locale() -> str:
     """Get the locale for the web page.
