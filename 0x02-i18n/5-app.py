@@ -42,8 +42,7 @@ def get_user() -> Union[Dict, None]:
 def before_request() -> None:
     """Stores this data in g.user
     """
-    # g.user = get_user()
-    setattr(g, 'user', get_user(request.args.get('login_as', 0)))
+    g.user = get_user()
 
 
 @babel.localeselector
