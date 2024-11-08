@@ -43,7 +43,8 @@ def before_request() -> None:
     """Stores this data in g.user
     """
 
-    g.user = get_user()
+    users = get_user()
+    g.user = users
 
 
 @babel.localeselector
