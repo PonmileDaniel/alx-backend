@@ -14,6 +14,7 @@ class Config(object):
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
+
 # Instantiate the app
 app = Flask(__name__)
 app.config.from_object(Config)
