@@ -38,7 +38,7 @@ def get_user():
     return None
 
 
-# @app.before_request
+@app.before_request
 def before_request() -> None:
     """_summary_
     Returns:
