@@ -38,6 +38,15 @@ def get_user():
     return None
 
 
+@app.before_request
+def before_request() -> None:
+    """_summary_
+    Returns:
+        user is equal to get user
+    """
+
+    users = get_user()
+    g.user = users
 
 
 @babel.localeselector
